@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Kainat Raisa Hossain — AI & Product</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0a0a0a;
+    --white: #f8f6f1;
+    --gray-100: #e8e6e0;
+    --gray-200: #c8c5bc;
+    --gray-400: #888580;
+    --gray-600: #555250;
+    --accent: #1a1a1a;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--black);
+    font-size: 16px;
+    line-height: 1.7;
+    cursor: none;
+  }
+
+  /* Custom cursor */
+  .cursor {
+    width: 12px; height: 12px;
+    background: var(--black);
+    border-radius: 50%;
+    position: fixed;
+    top: 0; left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.15s ease;
+    mix-blend-mode: multiply;
+  }
+  .cursor-ring {
+    width: 36px; height: 36px;
+    border: 1px solid var(--black);
+    border-radius: 50%;
+    position: fixed;
+    top: 0; left: 0;
+    pointer-events: none;
+    z-index: 9998;
+    transition: all 0.25s ease;
+    mix-blend-mode: multiply;
+  }
+
+  /* Nav */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.5rem 4rem;
+    background: var(--white);
+    border-bottom: 1px solid var(--gray-100);
+    backdrop-filter: blur(12px);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.03em;
+    color: var(--black);
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gray-600);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--black); }
+
+  /* Hero */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-bottom: 1px solid var(--gray-200);
+    padding-top: 5rem;
+  }
+  .hero-left {
+    padding: 8rem 4rem 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-right: 1px solid var(--gray-200);
+  }
+  .hero-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gray-400);
+    margin-bottom: 2rem;
+  }
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 700;
+    line-height: 1.05;
+    margin-bottom: 2rem;
+    letter-spacing: -0.02em;
+  }
+  .hero-name em {
+    font-style: italic;
+    font-weight: 400;
+  }
+  .hero-bio {
+    font-size: 1rem;
+    color: var(--gray-600);
+    max-width: 420px;
+    line-height: 1.8;
+    margin-bottom: 3rem;
+  }
+  .hero-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+  .hero-link {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--black);
+    text-decoration: none;
+    padding: 0.7rem 1.4rem;
+    border: 1px solid var(--black);
+    transition: all 0.25s;
+  }
+  .hero-link:hover { background: var(--black); color: var(--white); }
+  .hero-link.filled { background: var(--black); color: var(--white); }
+  .hero-link.filled:hover { background: transparent; color: var(--black); }
+
+  .hero-right {
+    padding: 8rem 4rem 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+  .hero-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin-bottom: 4rem;
+  }
+  .stat-box {
+    padding: 2rem 1.5rem;
+    border: 1px solid var(--gray-200);
+  }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    display: block;
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .stat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gray-400);
+  }
+  .hero-scroll {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gray-400);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .hero-scroll::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--gray-400);
+  }
+
+  /* Section base */
+  section { border-bottom: 1px solid var(--gray-200); }
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 2rem;
+    padding: 3rem 4rem 2rem;
+    border-bottom: 1px solid var(--gray-100);
+  }
+  .section-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--gray-400);
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  /* Experience */
+  #experience .exp-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+  .exp-item {
+    padding: 2.5rem 4rem;
+    border-right: 1px solid var(--gray-100);
+    border-bottom: 1px solid var(--gray-100);
+    transition: background 0.2s;
+    position: relative;
+  }
+  .exp-item:nth-child(even) { border-right: none; }
+  .exp-item:hover { background: var(--black); color: var(--white); }
+  .exp-item:hover .exp-company,
+  .exp-item:hover .exp-meta,
+  .exp-item:hover .exp-desc { color: var(--gray-200); }
+  .exp-item:hover .exp-tag { background: var(--gray-600); color: var(--white); }
+
+  .exp-role {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+    line-height: 1.3;
+  }
+  .exp-company {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray-600);
+    margin-bottom: 0.2rem;
+  }
+  .exp-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--gray-400);
+    margin-bottom: 1rem;
+  }
+  .exp-desc {
+    font-size: 0.875rem;
+    color: var(--gray-600);
+    line-height: 1.7;
+    transition: color 0.2s;
+  }
+  .exp-tag {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: var(--gray-100);
+    padding: 0.25rem 0.6rem;
+    margin-top: 1rem;
+    transition: all 0.2s;
+  }
+  .exp-tag.current { background: var(--black); color: var(--white); }
+  .exp-item:hover .exp-tag.current { background: var(--white); color: var(--black); }
+
+  /* Research */
+  #research .research-list { padding: 0 4rem 2rem; }
+  .research-item {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    gap: 4rem;
+    padding: 2.5rem 0;
+    border-bottom: 1px solid var(--gray-100);
+    align-items: start;
+  }
+  .research-item:last-child { border-bottom: none; }
+  .research-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+  .research-org {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gray-400);
+    margin-top: 0.4rem;
+  }
+  .research-desc {
+    font-size: 0.9rem;
+    color: var(--gray-600);
+    line-height: 1.75;
+  }
+
+  /* Projects */
+  #projects .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+  }
+  .project-card {
+    padding: 2.5rem;
+    border-right: 1px solid var(--gray-100);
+    border-bottom: 1px solid var(--gray-100);
+    display: flex;
+    flex-direction: column;
+    transition: background 0.25s;
+    cursor: default;
+  }
+  .project-card:nth-child(3n) { border-right: none; }
+  .project-card:hover { background: var(--black); }
+  .project-card:hover .project-name,
+  .project-card:hover .project-desc { color: var(--white); }
+  .project-card:hover .project-tools span { border-color: var(--gray-600); color: var(--gray-200); }
+  .project-card:hover .proj-num { color: var(--gray-600); }
+
+  .proj-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--gray-200);
+    margin-bottom: 1.5rem;
+    transition: color 0.25s;
+  }
+  .project-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 0.8rem;
+    transition: color 0.25s;
+  }
+  .project-desc {
+    font-size: 0.83rem;
+    color: var(--gray-600);
+    line-height: 1.7;
+    flex: 1;
+    transition: color 0.25s;
+  }
+  .project-tools {
+    display: flex; flex-wrap: wrap; gap: 0.4rem;
+    margin-top: 1.5rem;
+  }
+  .project-tools span {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    padding: 0.2rem 0.5rem;
+    border: 1px solid var(--gray-200);
+    color: var(--gray-600);
+    transition: all 0.25s;
+  }
+
+  /* Achievements */
+  #achievements .ach-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    padding: 0 4rem 3rem;
+  }
+  .ach-item {
+    padding: 3rem 2rem 3rem 0;
+    border-right: 1px solid var(--gray-100);
+    padding-right: 3rem;
+  }
+  .ach-item:nth-child(even) {
+    padding-right: 0;
+    padding-left: 3rem;
+    border-right: none;
+  }
+  .ach-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    background: var(--black);
+    color: var(--white);
+    padding: 0.3rem 0.8rem;
+    display: inline-block;
+    margin-bottom: 1.5rem;
+  }
+  .ach-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+    line-height: 1.2;
+  }
+  .ach-desc {
+    font-size: 0.875rem;
+    color: var(--gray-600);
+    line-height: 1.75;
+  }
+
+  /* Skills */
+  #skills .skills-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0;
+  }
+  .skill-group {
+    padding: 3rem 4rem;
+    border-right: 1px solid var(--gray-100);
+  }
+  .skill-group:last-child { border-right: none; }
+  .skill-group-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gray-400);
+    margin-bottom: 1.5rem;
+  }
+  .skill-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .pill {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.9rem;
+    border: 1px solid var(--gray-200);
+    color: var(--black);
+    transition: all 0.2s;
+    cursor: default;
+  }
+  .pill:hover { background: var(--black); color: var(--white); border-color: var(--black); }
+  .pill.strong { background: var(--black); color: var(--white); border-color: var(--black); }
+
+  /* Education */
+  #education .edu-row {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    padding: 3rem 4rem;
+  }
+  .edu-degree {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+  .edu-institution {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gray-600);
+    margin-top: 0.4rem;
+  }
+  .edu-years {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--gray-400);
+    margin-left: auto;
+    white-space: nowrap;
+  }
+
+  /* Footer */
+  footer {
+    background: var(--black);
+    color: var(--white);
+    padding: 5rem 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+  footer .footer-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+  footer .footer-sub {
+    font-size: 0.875rem;
+    color: var(--gray-400);
+    max-width: 360px;
+    line-height: 1.75;
+  }
+  footer .footer-contact { display: flex; flex-direction: column; justify-content: flex-end; gap: 1.2rem; }
+  footer .contact-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
+    color: var(--gray-200);
+    font-size: 0.875rem;
+    transition: color 0.2s;
+    border-bottom: 1px solid var(--gray-600);
+    padding-bottom: 1rem;
+  }
+  footer .contact-row:hover { color: var(--white); }
+  footer .contact-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gray-400);
+    min-width: 60px;
+  }
+  footer .footer-bottom {
+    grid-column: 1 / -1;
+    border-top: 1px solid var(--gray-600);
+    padding-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  footer .footer-bottom p {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    color: var(--gray-400);
+    text-transform: uppercase;
+  }
+
+  /* Divider line animation */
+  .line-anim {
+    height: 1px;
+    background: var(--gray-200);
+    transform-origin: left;
+  }
+
+  /* Fade in */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-in.visible { opacity: 1; transform: none; }
+
+  @media (max-width: 1024px) {
+    nav { padding: 1.5rem 2rem; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-left, .hero-right { padding: 3rem 2rem; border-right: none; }
+    .hero-left { padding-top: 7rem; }
+    #experience .exp-grid { grid-template-columns: 1fr; }
+    .exp-item { border-right: none; }
+    .exp-item:nth-child(even) { border-right: none; }
+    #projects .projects-grid { grid-template-columns: 1fr 1fr; }
+    .project-card:nth-child(3n) { border-right: 1px solid var(--gray-100); }
+    .project-card:nth-child(even) { border-right: none; }
+    #skills .skills-layout { grid-template-columns: 1fr 1fr; }
+    .skill-group:last-child { border-right: none; grid-column: 1 / -1; border-top: 1px solid var(--gray-100); }
+    .section-header { padding: 2rem; }
+    #research .research-list { padding: 0 2rem 2rem; }
+    .research-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    footer { grid-template-columns: 1fr; padding: 3rem 2rem; }
+    #achievements .ach-grid { padding: 0 2rem 2rem; }
+    .edu-row { padding: 2rem; }
+    .skill-group { padding: 2rem; }
+  }
+  @media (max-width: 680px) {
+    nav .nav-links { display: none; }
+    #projects .projects-grid { grid-template-columns: 1fr; }
+    #achievements .ach-grid { grid-template-columns: 1fr; }
+    .hero-stats { grid-template-columns: 1fr 1fr; }
+    .skills-layout { grid-template-columns: 1fr !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav>
+  <a href="#" class="nav-logo">KRH</a>
+  <ul class="nav-links">
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left fade-in">
+    <p class="hero-tag">AI Researcher &amp; Product Analyst — Dhaka, Bangladesh</p>
+    <h1 class="hero-name">Kainat<br/><em>Raisa</em><br/>Hossain</h1>
+    <p class="hero-bio">Building intelligent systems at the intersection of AI agents, RAG pipelines, and product strategy. Currently automating sales operations with AI at Optimizely.</p>
+    <div class="hero-links">
+      <a href="mailto:kainatraisa@gmail.com" class="hero-link filled">Get in touch</a>
+      <a href="https://github.com/Kainat-raisa21" target="_blank" class="hero-link">GitHub</a>
+      <a href="https://linkedin.com/in/kainat-raisa" target="_blank" class="hero-link">LinkedIn</a>
+    </div>
+  </div>
+  <div class="hero-right fade-in" style="transition-delay: 0.15s;">
+    <div class="hero-stats">
+      <div class="stat-box">
+        <span class="stat-num">8+</span>
+        <span class="stat-label">Roles & Positions</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-num">5+</span>
+        <span class="stat-label">AI Agent Projects</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-num">2</span>
+        <span class="stat-label">Research Papers</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-num">2×</span>
+        <span class="stat-label">National Awards</span>
+      </div>
+    </div>
+    <p class="hero-scroll">Scroll to explore</p>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-header fade-in">
+    <span class="section-num">01</span>
+    <h2 class="section-title">Professional Experience</h2>
+  </div>
+  <div class="exp-grid">
+
+    <div class="exp-item fade-in">
+      <div class="exp-company">Optimizely</div>
+      <div class="exp-role">Sales Operations Junior Analyst — AI</div>
+      <div class="exp-meta">March 2026 — Present</div>
+      <p class="exp-desc">Identifying high-impact sales operations problems and designing AI agent–based solutions to automate workflows. Leading integration of AI tools across Salesforce and developing the Sales AI roadmap aligned with revenue goals.</p>
+      <span class="exp-tag current">Current</span>
+    </div>
+
+    <div class="exp-item fade-in">
+      <div class="exp-company">AskTuring.ai</div>
+      <div class="exp-role">Junior Product Analyst</div>
+      <div class="exp-meta">March 2025 — February 2026</div>
+      <p class="exp-desc">Architected RAG pipelines including Text-to-SQL RAG, Hybrid RAG pipeline combining structured and unstructured retrieval, and a Title Review Multiagentic RAG pipeline enabling clients to interact with their data in natural language.</p>
+      <span class="exp-tag">RAG · Agentic AI</span>
+    </div>
+
+    <div class="exp-item fade-in">
+      <div class="exp-company">AskTuring.ai</div>
+      <div class="exp-role">AI Agent Researcher Intern</div>
+      <div class="exp-meta">December 2024 — February 2025</div>
+      <p class="exp-desc">Explored and developed tools and applications tailoring agent workflows to support business objectives.</p>
+      <span class="exp-tag">AI Agents</span>
+    </div>
+
+    <div class="exp-item fade-in">
+      <div class="exp-company">BARTA</div>
+      <div class="exp-role">Undergraduate AI Researcher</div>
+      <div class="exp-meta">October 2024 — Present</div>
+      <p class="exp-desc">Working on NLP, LLM, and Generative AI research. Current paper explores Human-like Temporal Reasoning in LLMs using Visualization of Thought Prompting Technique.</p>
+      <span class="exp-tag current">Current</span>
+    </div>
+
+    <div class="exp-item fade-in">
+      <div class="exp-company">Markopolo.ai</div>
+      <div class="exp-role">Data Science Intern</div>
+      <div class="exp-meta">November 2023 — December 2024</div>
+      <p class="exp-desc">Data scraping, annotation, and brand analysis using Python, NLP, and LLMs for some of Bangladesh's leading brands.</p>
+      <span class="exp-tag">Python · NLP</span>
+    </div>
+
+    <div class="exp-item fade-in">
+      <div class="exp-company">Fellowship.ai</div>
+      <div class="exp-role">Data Science &amp; ML Fellow</div>
+      <div class="exp-meta">April 2024 — June 2024</div>
+      <p class="exp-desc">Built a Real Estate Multi-agent application revolutionizing property search using CrewAI, Gemini-pro, and LangChain under Launchpad.ai mentorship.</p>
+      <span class="exp-tag">CrewAI · LangChain</span>
+    </div>
+
+    <div class="exp-item fade-in">
+      <div class="exp-company">Through LTD.</div>
+      <div class="exp-role">IT Project Manager</div>
+      <div class="exp-meta">August 2023 — December 2023</div>
+      <p class="exp-desc">Worked in the ideation team for designing and developing a one-stop Educational Management System.</p>
+      <span class="exp-tag">Project Management</span>
+    </div>
+
+    <div class="exp-item fade-in">
+      <div class="exp-company">Through LTD.</div>
+      <div class="exp-role">Full-Stack Developer Intern</div>
+      <div class="exp-meta">March 2023 — August 2023</div>
+      <p class="exp-desc">Designing and ideating websites for clients, covering both frontend and backend development.</p>
+      <span class="exp-tag">Web Dev</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- RESEARCH -->
+<section id="research">
+  <div class="section-header fade-in">
+    <span class="section-num">02</span>
+    <h2 class="section-title">Research</h2>
+  </div>
+  <div class="research-list">
+    <div class="research-item fade-in">
+      <div>
+        <div class="research-title">Temporal Validity in Retrieval Systems</div>
+        <div class="research-org">AI Researcher — Independent</div>
+      </div>
+      <p class="research-desc">Analyzing failure modes in RAG pipelines where semantically correct but time-invalid information is retrieved. Developing ValidityBench — a benchmark for statement-level temporal validity — and a validity-constrained retrieval framework to reduce errors like supersession, anticipation, and recency bias in time-sensitive QA.</p>
+    </div>
+    <div class="research-item fade-in">
+      <div>
+        <div class="research-title">Human-like Temporal Reasoning in LLMs</div>
+        <div class="research-org">BARTA — Ongoing</div>
+      </div>
+      <p class="research-desc">Exploring how large language models can reason about time through Visualization of Thought Prompting Technique, bridging the gap between human temporal cognition and current LLM capabilities.</p>
+    </div>
+    <div class="research-item fade-in">
+      <div>
+        <div class="research-title">iRAP Road Safety Research</div>
+        <div class="research-org">IIT, Dhaka University — BUET · Co-Author</div>
+      </div>
+      <p class="research-desc">Predicting road safety levels using ML algorithms and analyzing crash contributing factors to build a comprehensive understanding of road safety scenarios in Bangladesh.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <div class="section-header fade-in">
+    <span class="section-num">03</span>
+    <h2 class="section-title">Achievements</h2>
+  </div>
+  <div class="ach-grid">
+    <div class="ach-item fade-in">
+      <span class="ach-badge">🏆 1st Runner Up</span>
+      <h3 class="ach-title">VisionX 2025</h3>
+      <p class="ach-desc">Secured 2nd position in a national AI-powered innovation competition in Bangladesh with NyayBondhu — a multi-agent legal intelligence system designed to simplify legal processes through automated document analysis, case insights, and natural language interaction.</p>
+    </div>
+    <div class="ach-item fade-in">
+      <span class="ach-badge">⭐ Semifinalist</span>
+      <h3 class="ach-title">Entrepret 3.0</h3>
+      <p class="ach-desc">Qualified for the semifinals in a national entrepreneurship competition with NyayBondhu, focusing on building an AI-driven legal assistant to improve accessibility, efficiency, and decision-making in legal workflows.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-header fade-in">
+    <span class="section-num">04</span>
+    <h2 class="section-title">Projects</h2>
+  </div>
+  <div class="projects-grid">
+
+    <div class="project-card fade-in">
+      <div class="proj-num">01</div>
+      <div class="project-name">Media Intelligence Agent</div>
+      <p class="project-desc">Multi-agentic platform to aggregate, verify, and analyze breaking news from multiple sources in real-time, enabling journalists to extract actionable insights faster than standard LLM workflows.</p>
+      <div class="project-tools">
+        <span>LangGraph</span><span>Groq</span><span>BS4</span>
+      </div>
+    </div>
+
+    <div class="project-card fade-in">
+      <div class="proj-num">02</div>
+      <div class="project-name">RAG Career Path Recommender</div>
+      <p class="project-desc">Scraped LinkedIn profile data and used it as a knowledge base for an AI agent that recommends personalized career paths based on the given profile.</p>
+      <div class="project-tools">
+        <span>Gemini-pro</span><span>Playwright</span><span>Pandas</span>
+      </div>
+    </div>
+
+    <div class="project-card fade-in">
+      <div class="proj-num">03</div>
+      <div class="project-name">Real Estate AI Agent</div>
+      <p class="project-desc">Multi-agentic real estate application that searches for real properties and matches them with detailed user preferences autonomously using vector embeddings and SQL.</p>
+      <div class="project-tools">
+        <span>CrewAI</span><span>SQLite</span><span>CLIP</span><span>LangChain</span>
+      </div>
+    </div>
+
+    <div class="project-card fade-in">
+      <div class="proj-num">04</div>
+      <div class="project-name">NyayBondhu — Legal AI</div>
+      <p class="project-desc">Award-winning multi-agent legal intelligence system for automated document analysis, case insights, and natural language interaction for simplified legal processes.</p>
+      <div class="project-tools">
+        <span>Agentic AI</span><span>NLP</span><span>LLM</span>
+      </div>
+    </div>
+
+    <div class="project-card fade-in">
+      <div class="proj-num">05</div>
+      <div class="project-name">Software Engineer Agent</div>
+      <p class="project-desc">Multi-agentic software engineering application that writes code in any language from simple user queries with better efficiency and industry best practices than standard LLMs.</p>
+      <div class="project-tools">
+        <span>CrewAI</span><span>Gemini-pro</span>
+      </div>
+    </div>
+
+    <div class="project-card fade-in">
+      <div class="proj-num">06</div>
+      <div class="project-name">Data Science Agent</div>
+      <p class="project-desc">Multi-agentic Data Science application aimed at automating the entire Data Science pipeline from data preparation to model deployment.</p>
+      <div class="project-tools">
+        <span>Gemini-pro</span><span>CrewAI</span><span>LangChain</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header fade-in">
+    <span class="section-num">05</span>
+    <h2 class="section-title">Technical Skills</h2>
+  </div>
+  <div class="skills-layout">
+    <div class="skill-group fade-in">
+      <p class="skill-group-title">Core Expertise</p>
+      <div class="skill-pills">
+        <span class="pill strong">Generative AI</span>
+        <span class="pill strong">Agentic AI</span>
+        <span class="pill strong">Multi-agent Systems</span>
+        <span class="pill strong">RAG Pipelines</span>
+        <span class="pill">AI Solution Architecture</span>
+        <span class="pill">Product Analysis</span>
+        <span class="pill">NLP</span>
+        <span class="pill">LLMs</span>
+      </div>
+    </div>
+    <div class="skill-group fade-in">
+      <p class="skill-group-title">Languages &amp; Frameworks</p>
+      <div class="skill-pills">
+        <span class="pill strong">Python</span>
+        <span class="pill strong">SQL</span>
+        <span class="pill">C</span>
+        <span class="pill">HTML / CSS</span>
+        <span class="pill strong">LangChain</span>
+        <span class="pill strong">LangGraph</span>
+        <span class="pill strong">CrewAI</span>
+        <span class="pill">Sci-kit learn</span>
+        <span class="pill">NLTK</span>
+        <span class="pill">SpaCy</span>
+        <span class="pill">Pandas</span>
+        <span class="pill">NumPy</span>
+        <span class="pill">Playwright</span>
+        <span class="pill">BS4</span>
+      </div>
+    </div>
+    <div class="skill-group fade-in">
+      <p class="skill-group-title">Tools &amp; Platforms</p>
+      <div class="skill-pills">
+        <span class="pill strong">GitHub</span>
+        <span class="pill strong">Salesforce</span>
+        <span class="pill">Google Colab</span>
+        <span class="pill">VS Code</span>
+        <span class="pill">PyCharm</span>
+        <span class="pill">Cursor</span>
+        <span class="pill">Claude</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-header fade-in">
+    <span class="section-num">06</span>
+    <h2 class="section-title">Education</h2>
+  </div>
+  <div class="edu-row fade-in">
+    <div>
+      <div class="edu-degree">Bachelor of Science in Education</div>
+      <div class="edu-institution">IER — Institute of Education and Research, University of Dhaka</div>
+    </div>
+    <div class="edu-years">Jan 2022 — Aug 2025</div>
+  </div>
+</section>
+
+<!-- FOOTER / CONTACT -->
+<footer id="contact">
+  <div>
+    <div class="footer-name">Let's build<br/><em style="font-family:'Playfair Display',serif; font-style:italic;">something</em><br/>intelligent.</div>
+    <p class="footer-sub">Open to research collaborations, AI product roles, and interesting conversations about agentic systems and the future of AI.</p>
+  </div>
+  <div class="footer-contact">
+    <a href="mailto:kainatraisa@gmail.com" class="contact-row">
+      <span class="contact-label">Email</span>
+      kainatraisa@gmail.com
+    </a>
+    <a href="https://linkedin.com/in/kainat-raisa" target="_blank" class="contact-row">
+      <span class="contact-label">LinkedIn</span>
+      linkedin.com/in/kainat-raisa
+    </a>
+    <a href="https://github.com/Kainat-raisa21" target="_blank" class="contact-row">
+      <span class="contact-label">GitHub</span>
+      github.com/Kainat-raisa21
+    </a>
+  </div>
+  <div class="footer-bottom">
+    <p>Kainat Raisa Hossain — Portfolio 2026</p>
+    <p>Dhaka, Bangladesh</p>
+  </div>
+</footer>
+
+<script>
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = (mx - 6) + 'px';
+    cursor.style.top = (my - 6) + 'px';
+  });
+
+  function animRing() {
+    rx += (mx - rx - 18) * 0.12;
+    ry += (my - ry - 18) * 0.12;
+    ring.style.left = rx + 'px';
+    ring.style.top = ry + 'px';
+    requestAnimationFrame(animRing);
+  }
+  animRing();
+
+  document.querySelectorAll('a, button, .project-card, .exp-item').forEach(el => {
+    el.addEventListener('mouseenter', () => { cursor.style.transform = 'scale(2.5)'; });
+    el.addEventListener('mouseleave', () => { cursor.style.transform = 'scale(1)'; });
+  });
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 60);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
