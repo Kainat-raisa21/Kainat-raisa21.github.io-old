@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kainat Raisa Hossain — AI Product Engineer</title>
+<meta name="description" content="Kainat Raisa Hossain designs and ships agentic AI systems for legal and operational workflows. Ask the portfolio agent anything.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧭</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme: light;
+  --bg:#F4F1FB; --surface:#FFFFFF; --ink:#1A1433; --muted:#5E587A; --line:#DDD6F0;
+  --night:#160F38; --night-2:#261A63; --on-night:#F4F1FB; --on-night-muted:#B9B1DE;
+  --violet:#6D4AFF; --violet-soft:#ECE6FF;
+  --mint:#0FA97A;   --mint-soft:#DBF6EC;
+  --sun:#F2A100;    --sun-soft:#FFF0CC;
+  --coral:#F2456A;  --coral-soft:#FFE0E7;
+  --sky:#1E95E0;    --sky-soft:#DBEFFC;
+  --sans:"Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --mono:"JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    color-scheme: dark;
+    --bg:#0F0B22; --surface:#1A1438; --ink:#ECE8FA; --muted:#A49DC4; --line:#2E2657;
+    --night:#08061A; --night-2:#1C1450; --on-night:#F4F1FB; --on-night-muted:#A9A1D2;
+    --violet:#9C85FF; --violet-soft:#2A2160;
+    --mint:#3DDCA8;   --mint-soft:#12352B;
+    --sun:#FFC44D;    --sun-soft:#3A2C0E;
+    --coral:#FF7A93;  --coral-soft:#3D1A24;
+    --sky:#5CC0FF;    --sky-soft:#10304A;
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:var(--violet);text-underline-offset:3px}
+:focus-visible{outline:2px solid var(--sun);outline-offset:3px;border-radius:3px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px;position:relative}
+
+/* ---------- hero band ---------- */
+.hero-band{position:relative;overflow:hidden;color:var(--on-night);
+  background:
+    radial-gradient(700px 420px at 92% 8%, rgba(242,69,106,.38), transparent 70%),
+    radial-gradient(640px 520px at 6% 96%, rgba(15,169,122,.30), transparent 70%),
+    radial-gradient(900px 600px at 55% 40%, var(--night-2), var(--night) 75%);}
+.netbg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.55}
+.netbg line{stroke:#6D5BC8;stroke-width:1}
+.netbg .pulse{stroke:#FFC44D;stroke-width:2;stroke-dasharray:14 400;animation:pulse 5s linear infinite}
+.netbg .pulse.b{stroke:#5CC0FF;animation-delay:-2.5s}
+@keyframes pulse{from{stroke-dashoffset:414}to{stroke-dashoffset:0}}
+@media (prefers-reduced-motion: reduce){.netbg .pulse{animation:none;stroke-dasharray:none;opacity:0}}
+
+nav{display:flex;justify-content:space-between;align-items:center;padding:22px 0;gap:16px;flex-wrap:wrap;position:relative}
+nav .mark{font-weight:800;text-decoration:none;color:var(--on-night);font-size:18px;display:flex;align-items:center;gap:10px}
+nav .mark i{display:inline-flex;gap:3px}
+nav .mark i b{width:8px;height:8px;border-radius:50%;display:block}
+nav ul{list-style:none;display:flex;gap:22px;margin:0;padding:0;flex-wrap:wrap}
+nav ul a{color:var(--on-night-muted);text-decoration:none;font-size:15px;font-weight:500}
+nav ul a:hover{color:#fff}
+
+.hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:56px;padding:40px 0 96px;align-items:start;position:relative}
+.hero h1{font-size:clamp(54px,7.6vw,108px);line-height:.88;letter-spacing:-.045em;font-weight:900;margin:0 0 26px;color:#fff}
+.hero h1 span{display:block}
+.hero h1 span:nth-child(2){color:transparent;-webkit-text-stroke:2px #C9BCFF}
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 24px;padding:0;list-style:none}
+.pills li{font-size:14px;font-weight:600;padding:6px 12px;border-radius:999px;color:#160F38}
+.pills li:nth-child(1){background:#C9BCFF}
+.pills li:nth-child(2){background:#FFB3C3}
+.pills li:nth-child(3){background:#9EEBCF}
+.pills li:nth-child(4){background:#FFD98A}
+.hero .lede{font-size:21px;line-height:1.45;max-width:30ch;margin:0 0 18px;font-weight:600}
+.hero .sub{color:var(--on-night-muted);max-width:44ch;margin:0 0 28px}
+.links{display:flex;gap:10px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;padding:11px 18px;border-radius:999px;border:1.5px solid currentColor;color:var(--ink);text-decoration:none;font-weight:700;font-size:15px;background:transparent;transition:transform .12s}
+.btn:hover{transform:translateY(-2px)}
+.btn.primary{background:var(--violet);border-color:var(--violet);color:#fff}
+.hero-band .btn{color:#fff}
+.hero-band .btn.primary{background:#FFC44D;border-color:#FFC44D;color:#160F38}
+
+/* ---------- console ---------- */
+.console{background:var(--surface);color:var(--ink);border-radius:18px;overflow:hidden;box-shadow:12px 12px 0 #F2456A, 0 30px 60px rgba(8,6,26,.45)}
+.console-head{padding:18px 20px 16px;background:linear-gradient(120deg,#6D4AFF,#9B5CFF 60%,#C25CE8);color:#fff}
+.console-head h2{margin:0 0 4px;font-size:20px;letter-spacing:-.01em;display:flex;align-items:center;gap:10px}
+.console-head h2 .live{font-size:12px;font-weight:700;background:rgba(255,255,255,.2);padding:2px 9px;border-radius:999px;display:inline-flex;align-items:center;gap:6px}
+.console-head h2 .live::before{content:"";width:7px;height:7px;border-radius:50%;background:#9EEBCF}
+.console-head p{margin:0;color:#EDE7FF;font-size:14.5px}
+.ask{display:flex;gap:8px;padding:16px 20px 10px}
+.ask input{flex:1;min-width:0;font:inherit;font-size:16px;padding:11px 14px;border-radius:12px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink)}
+.ask input:focus{border-color:var(--violet);outline:none;box-shadow:0 0 0 4px var(--violet-soft)}
+.ask button{font:inherit;font-weight:800;font-size:15px;padding:0 20px;border-radius:12px;border:0;background:var(--ink);color:var(--bg);cursor:pointer}
+.ask button:hover{background:var(--violet);color:#fff}
+.chips{display:flex;flex-wrap:wrap;gap:6px;padding:0 20px 14px}
+.chip{font:inherit;font-size:13.5px;font-weight:500;padding:6px 11px;border-radius:999px;border:0;cursor:pointer;color:var(--ink)}
+.chip:nth-child(1){background:var(--violet-soft)}
+.chip:nth-child(2){background:var(--mint-soft)}
+.chip:nth-child(3){background:var(--sky-soft)}
+.chip:nth-child(4){background:var(--sun-soft)}
+.chip:nth-child(5){background:var(--coral-soft)}
+.chip:hover{outline:1.5px solid var(--ink)}
+.toggle{display:flex;align-items:center;gap:10px;padding:11px 20px;border-top:1px solid var(--line);font-size:14px;color:var(--muted)}
+.switch{position:relative;width:40px;height:23px;flex:none}
+.switch input{opacity:0;width:100%;height:100%;margin:0;position:absolute;cursor:pointer;z-index:1}
+.switch .track{position:absolute;inset:0;border-radius:999px;background:var(--coral);transition:background .15s}
+.switch .track::after{content:"";position:absolute;top:3px;left:3px;width:17px;height:17px;border-radius:50%;background:#fff;transition:transform .15s}
+.switch input:checked + .track{background:var(--mint)}
+.switch input:checked + .track::after{transform:translateX(17px)}
+.switch input:focus-visible + .track{outline:2px solid var(--violet);outline-offset:2px}
+.toggle strong{color:var(--ink);font-weight:700}
+
+.answer{padding:18px 20px;border-top:1px solid var(--line);min-height:96px}
+.answer .q{font-size:13.5px;color:var(--muted);margin:0 0 6px}
+.answer .a{margin:0;font-size:16.5px;line-height:1.55}
+.answer .a sup a{font-size:11px;font-weight:800;text-decoration:none;padding:1px 5px;border-radius:5px;background:var(--violet);color:#fff;margin-left:2px}
+.answer .empty{color:var(--muted);margin:0}
+.warn{margin-top:10px;font-size:13.5px;padding:9px 11px;border-radius:10px;background:var(--coral-soft);color:var(--ink);border-left:4px solid var(--coral)}
+
+.trace{border-top:1px solid var(--line);background:var(--bg);padding:14px 20px 18px;font-family:var(--mono);font-size:12.5px;line-height:1.5}
+.trace-title{display:flex;justify-content:space-between;color:var(--muted);margin-bottom:10px;font-family:var(--sans);font-size:13.5px;font-weight:600}
+.trace ol{list-style:none;margin:0;padding:0;counter-reset:step}
+.trace li{--c:var(--violet);position:relative;padding:0 0 10px 28px;opacity:.38;transition:opacity .2s}
+.trace li:nth-child(2){--c:var(--sun)}
+.trace li:nth-child(3){--c:var(--mint)}
+.trace li:nth-child(4){--c:var(--coral)}
+.trace li:nth-child(5){--c:var(--sky)}
+.trace li.on{opacity:1}
+.trace li::before{counter-increment:step;content:counter(step);position:absolute;left:0;top:0;width:19px;height:19px;border-radius:50%;border:1.5px solid var(--c);font-size:10px;font-weight:700;display:grid;place-items:center;color:var(--c)}
+.trace li.on::before{background:var(--c);color:#fff}
+.trace li:not(:last-child)::after{content:"";position:absolute;left:9px;top:21px;bottom:2px;width:1.5px;background:var(--line)}
+.trace .node{font-weight:600;color:var(--c)}
+.trace .det{color:var(--muted);word-break:break-word}
+.trace .det b{color:var(--ink)}
+.trace .fact{display:block;margin-top:2px}
+.trace .gone{text-decoration:line-through;color:var(--coral)}
+.trace .pass{color:var(--mint);font-weight:600}
+.trace .fail{color:var(--coral)}
+
+/* ---------- sections ---------- */
+section.block{padding:88px 0}
+section.alt{background:var(--surface)}
+.block-head{display:grid;grid-template-columns:260px minmax(0,1fr);gap:40px;margin-bottom:36px;align-items:end}
+.block-head h2{font-size:clamp(36px,4.2vw,52px);line-height:1;letter-spacing:-.035em;margin:0;font-weight:900;display:flex;align-items:center;gap:14px}
+.block-head h2::before{content:"";width:16px;height:16px;border-radius:50%;background:var(--accent,var(--violet));flex:none;box-shadow:0 0 0 6px var(--accent-soft,var(--violet-soft))}
+.block-head p{margin:0;color:var(--muted);max-width:60ch}
+#work{--accent:var(--violet);--accent-soft:var(--violet-soft)}
+#systems{--accent:var(--mint);--accent-soft:var(--mint-soft)}
+#research{--accent:var(--sky);--accent-soft:var(--sky-soft)}
+#recognition{--accent:var(--sun);--accent-soft:var(--sun-soft)}
+.flash{animation:flash 1.6s ease}
+@keyframes flash{0%,40%{background:var(--sun-soft);box-shadow:0 0 0 10px var(--sun-soft)}100%{background:transparent;box-shadow:none}}
+@media (prefers-reduced-motion: reduce){.flash{animation:none}}
+
+/* work timeline */
+.timeline{list-style:none;margin:0;padding:0}
+.timeline > li{display:grid;grid-template-columns:260px minmax(0,1fr);gap:40px;padding:24px 0;border-top:1px solid var(--line);border-radius:8px}
+.timeline .when{color:var(--muted);font-size:15px;font-variant-numeric:tabular-nums;padding-left:22px;position:relative}
+.timeline .when::before{content:"";position:absolute;left:0;top:6px;width:11px;height:11px;border-radius:3px;background:var(--dot,var(--line));transform:rotate(45deg)}
+.timeline .when strong{display:block;color:var(--ink);font-size:17px}
+#w-casemax{--dot:var(--violet)} #w-optimizely{--dot:var(--sky)} #w-askturing{--dot:var(--coral)} #w-barta{--dot:var(--mint)}
+.timeline h3{margin:0 0 6px;font-size:20px;letter-spacing:-.01em}
+.timeline h3 small{font-weight:500;color:var(--muted);font-size:17px}
+.timeline ul{margin:0;padding-left:18px;max-width:68ch}
+.timeline ul li{padding:3px 0}
+.timeline ul li::marker{color:var(--violet)}
+.org-note{margin:0 0 8px;color:var(--muted);font-size:15px}
+.now-tag{display:inline-block;font-size:12.5px;font-weight:800;color:#fff;background:var(--mint);padding:2px 9px;border-radius:999px;margin-left:8px;vertical-align:3px}
+.earlier summary{cursor:pointer;font-weight:700;padding:18px 0;border-top:1px solid var(--line);color:var(--violet)}
+
+/* systems */
+.legend{display:flex;flex-wrap:wrap;gap:14px;margin:-12px 0 26px;font-size:14px;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:7px}
+.legend i{width:14px;height:14px;border-radius:4px;border:2px solid var(--c);background:var(--cs)}
+.t-in{--c:var(--sun);--cs:var(--sun-soft)}
+.t-step{--c:var(--sky);--cs:var(--sky-soft)}
+.t-rt{--c:var(--violet);--cs:var(--violet-soft)}
+.t-sp{--c:var(--mint);--cs:var(--mint-soft)}
+.t-out{--c:var(--coral);--cs:var(--coral-soft)}
+.systems{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.sys{background:var(--bg);border-radius:18px;padding:26px;border-top:6px solid var(--top,var(--violet))}
+.sys.wide{grid-column:1 / -1;display:grid;grid-template-columns:260px minmax(0,1fr);gap:36px}
+.sys:nth-child(1){--top:var(--violet)} .sys:nth-child(2){--top:var(--coral)} .sys:nth-child(3){--top:var(--mint)}
+.sys:nth-child(4){--top:var(--sky)} .sys:nth-child(5){--top:var(--sun)} .sys:nth-child(6){--top:var(--violet)}
+.sys h3{margin:0;font-size:24px;letter-spacing:-.02em;line-height:1.1}
+.sys .tools{color:var(--muted);font-size:14px;margin:8px 0 14px}
+.sys p{margin:0 0 16px;max-width:66ch}
+.graph{display:flex;flex-wrap:wrap;align-items:center;gap:8px 0;font-size:13.5px;font-weight:500}
+.graph .n{padding:5px 11px;border:2px solid var(--c);border-radius:9px;background:var(--cs);white-space:nowrap;color:var(--ink)}
+.graph .n.t-sp{border-style:dashed;white-space:normal}
+.graph .e{width:22px;height:2px;background:var(--muted);position:relative;flex:none;opacity:.7}
+.graph .e::after{content:"";position:absolute;right:-1px;top:-4px;border:5px solid transparent;border-left:6px solid var(--muted);border-right:0}
+.minor{margin-top:28px;color:var(--muted);font-size:15px;max-width:80ch}
+
+/* research */
+.papers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.paper{border-radius:18px;padding:26px}
+.paper.lead{grid-column:1 / -1;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:36px;align-items:center;color:var(--on-night);
+  background:radial-gradient(500px 300px at 100% 0%, rgba(30,149,224,.35), transparent 70%), var(--night)}
+.paper.lead .meta{color:var(--on-night-muted)}
+.paper#r-collab{background:var(--sky-soft)}
+.paper#r-other{background:var(--sun-soft)}
+.paper h3{margin:0 0 8px;font-size:22px;letter-spacing:-.015em;line-height:1.2}
+.paper .meta{color:var(--muted);font-size:14.5px;margin:0 0 12px}
+.paper p{margin:0 0 10px}
+.paper .go{font-weight:700}
+.validity-viz{font-size:13.5px;background:rgba(255,255,255,.06);border-radius:14px;padding:18px}
+.vrow{display:grid;grid-template-columns:104px minmax(0,1fr);align-items:center;gap:10px;margin:8px 0}
+.vbar{height:16px;border-radius:5px;background:rgba(255,255,255,.1);position:relative}
+.vbar i{position:absolute;top:0;bottom:0;border-radius:5px;background:#3DDCA8}
+.vbar i.stale{background:#FF7A93}
+.vnow{position:relative;height:18px;margin-left:114px}
+.vnow span{position:absolute;top:0;transform:translateX(-50%);font-size:12px;color:#FFC44D;font-weight:800}
+.vkey{display:flex;gap:14px;margin-top:6px;color:var(--on-night-muted);font-size:12.5px}
+.vkey span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px;background:var(--k)}
+
+/* recognition + skills */
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:40px}
+.award{padding:20px 22px;border-radius:14px;background:var(--bg);margin-bottom:12px;border-left:5px solid var(--sun)}
+.award#education{border-left-color:var(--sky)}
+.award h3{margin:0 0 6px;font-size:19px}
+.award p{margin:0;color:var(--muted);max-width:56ch}
+.skills dl{margin:0}
+.skills dt{font-weight:800;margin-top:20px}
+.skills dd{margin:8px 0 0;display:flex;flex-wrap:wrap;gap:6px}
+.skills dd span{font-size:14px;padding:4px 10px;border-radius:8px;background:var(--cs);color:var(--ink)}
+
+/* contact */
+.contact-band{background:linear-gradient(135deg,#6D4AFF 0%,#9B5CFF 45%,#F2456A 100%);color:#fff}
+.contact{padding:100px 0 72px}
+.contact h2{font-size:clamp(42px,6.4vw,82px);letter-spacing:-.04em;line-height:.95;margin:0 0 24px;max-width:16ch;font-weight:900}
+.contact p{color:#F3EEFF;max-width:52ch;margin:0 0 28px;font-size:18px}
+.contact .btn{color:#fff}
+.contact .btn.primary{background:#fff;border-color:#fff;color:#2A1773}
+footer{padding:26px 0 40px;color:#EDE7FF;font-size:14px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;border-top:1px solid rgba(255,255,255,.25)}
+
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr;gap:44px;padding-top:20px}
+  .block-head,.timeline > li,.sys.wide{grid-template-columns:1fr;gap:10px}
+  .systems,.papers,.two,.paper.lead{grid-template-columns:1fr}
+  .console{box-shadow:7px 7px 0 #F2456A, 0 20px 40px rgba(8,6,26,.4)}
+}
+@media (max-width:520px){
+  .wrap{padding:0 18px}
+  nav ul{gap:14px}
+  .ask{flex-direction:column}
+  .ask button{padding:11px}
+  .sys{padding:20px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero-band">
+  <svg class="netbg" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <g>
+      <line x1="80" y1="120" x2="300" y2="220"/><line x1="300" y1="220" x2="520" y2="140"/>
+      <line x1="300" y1="220" x2="420" y2="420"/><line x1="420" y1="420" x2="700" y2="520"/>
+      <line x1="520" y1="140" x2="820" y2="90"/><line x1="820" y1="90" x2="1100" y2="200"/>
+      <line x1="700" y1="520" x2="980" y2="600"/><line x1="980" y1="600" x2="1140" y2="460"/>
+      <line x1="120" y1="560" x2="420" y2="420"/>
+    </g>
+    <path class="pulse" d="M80 120 L300 220 L420 420 L700 520 L980 600" fill="none"/>
+    <path class="pulse b" d="M120 560 L420 420 L300 220 L520 140 L820 90" fill="none"/>
+    <g>
+      <circle cx="80" cy="120" r="5" fill="#FFC44D"/><circle cx="300" cy="220" r="7" fill="#9C85FF"/>
+      <circle cx="520" cy="140" r="5" fill="#3DDCA8"/><circle cx="420" cy="420" r="6" fill="#9C85FF"/>
+      <circle cx="700" cy="520" r="5" fill="#3DDCA8"/><circle cx="820" cy="90" r="5" fill="#5CC0FF"/>
+      <circle cx="1100" cy="200" r="6" fill="#FF7A93"/><circle cx="980" cy="600" r="6" fill="#FF7A93"/>
+      <circle cx="1140" cy="460" r="4" fill="#FFC44D"/><circle cx="120" cy="560" r="5" fill="#5CC0FF"/>
+    </g>
+  </svg>
+  <div class="wrap">
+    <nav aria-label="Main">
+      <a class="mark" href="#top"><i aria-hidden="true"><b style="background:#9C85FF"></b><b style="background:#FF7A93"></b><b style="background:#3DDCA8"></b></i>Kainat Raisa Hossain</a>
+      <ul>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#systems">Systems</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <header class="hero" id="top">
+      <div>
+        <h1><span>Kainat</span><span>Raisa</span><span>Hossain</span></h1>
+        <ul class="pills" aria-label="Focus areas">
+          <li>Agent architecture</li><li>Legal-tech automation</li><li>RAG and evaluation</li><li>Research</li>
+        </ul>
+        <p class="lede">I turn messy, high-stakes legal and operational processes into agent systems that people can trust.</p>
+        <p class="sub">AI Product Engineer at CaseMax Plus. I work across the whole path: mapping how experts actually work, designing the multi-agent architecture, and shipping it with evaluation built in.</p>
+        <div class="links">
+          <a class="btn primary" href="#systems">See the systems</a>
+          <a class="btn" href="https://github.com/Kainat-raisa21" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn" href="https://www.linkedin.com/in/kainat-raisa/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+
+      <div class="console" role="region" aria-label="Portfolio agent">
+        <div class="console-head">
+          <h2>Ask this portfolio <span class="live">runs in your browser</span></h2>
+          <p>A small retrieval agent that answers only from facts on this page, cites them, and shows every step it took.</p>
+        </div>
+        <form class="ask" id="askForm" autocomplete="off">
+          <label for="q" style="position:absolute;left:-9999px">Your question</label>
+          <input id="q" type="text" placeholder="Where does Kainat work now?" maxlength="160">
+          <button type="submit">Ask</button>
+        </form>
+        <div class="chips" id="chips">
+          <button class="chip" type="button">Where does Kainat work now?</button>
+          <button class="chip" type="button">What is MergerDesk?</button>
+          <button class="chip" type="button">Has she published research?</button>
+          <button class="chip" type="button">What's her tech stack?</button>
+          <button class="chip" type="button">What's her favorite movie?</button>
+        </div>
+        <div class="toggle">
+          <span class="switch"><input type="checkbox" id="validity" checked aria-describedby="vhint"><span class="track"></span></span>
+          <span id="vhint"><strong>Admissibility check</strong>. Switch it off and ask where she works now.</span>
+        </div>
+        <div class="answer" id="answer" aria-live="polite">
+          <p class="empty">Pick a question above or type your own.</p>
+        </div>
+        <div class="trace" id="trace">
+          <div class="trace-title"><span>Execution trace</span><span id="tstats">idle</span></div>
+          <ol>
+            <li data-step="route"><span class="node">Router</span><div class="det">Classifies intent and time scope.</div></li>
+            <li data-step="retrieve"><span class="node">Retriever</span><div class="det">Scores every fact with BM25.</div></li>
+            <li data-step="validity"><span class="node">Admissibility filter</span><div class="det">Drops relevant facts that can’t answer the question as asked.</div></li>
+            <li data-step="ground"><span class="node">Grounding check</span><div class="det">Abstains when evidence is weak.</div></li>
+            <li data-step="compose"><span class="node">Composer</span><div class="det">Writes a cited answer.</div></li>
+          </ol>
+        </div>
+      </div>
+    </header>
+  </div>
+</div>
+
+<section class="block" id="work">
+ <div class="wrap">
+  <div class="block-head">
+    <h2>Work</h2>
+    <p>Most of my work sits where domain experts and engineers meet. I make the process legible first, then automate it.</p>
+  </div>
+  <ol class="timeline">
+    <li id="w-casemax">
+      <div class="when"><strong>CaseMax Plus</strong>May 2026 to now</div>
+      <div>
+        <h3>AI Product Engineer <span class="now-tag">Current</span></h3>
+        <p class="org-note">An LLC formed by CaseMax and a new partner company.</p>
+        <ul>
+          <li>Design agentic systems that automate legal workflows in the U.S. mortgage industry: process orchestration, document intelligence, workflow state, compliance-aware automation and human-in-the-loop review.</li>
+          <li>Architected a document verification agent that checks ownership and transfer records on top of structured document extraction.</li>
+          <li>Mapped end-to-end legal process flows that engineering uses as its reference spec, and turn subject-matter rules into specs for a modular, block-based workflow engine.</li>
+          <li>Building the evaluation system for a production document review pipeline.</li>
+        </ul>
+      </div>
+    </li>
+    <li id="w-optimizely">
+      <div class="when"><strong>Optimizely</strong>Mar 2026 to May 2026</div>
+      <div>
+        <h3>Sales Operations Junior Analyst <small>(AI)</small></h3>
+        <ul><li>Found high-impact sales operations problems and prototyped agent-based automation for them on top of Salesforce.</li></ul>
+      </div>
+    </li>
+    <li id="w-askturing">
+      <div class="when"><strong>AskTuring.ai</strong>Dec 2024 to Feb 2026</div>
+      <div>
+        <h3>Junior Product Analyst <small>(after AI Agent Researcher Intern)</small></h3>
+        <ul>
+          <li>Led architecture for a Text-to-SQL RAG application and a hybrid RAG pipeline that retrieves structured and unstructured data in one system.</li>
+          <li>Built a multi-agent RAG pipeline for title review, so clients could query their own records in natural language.</li>
+        </ul>
+      </div>
+    </li>
+    <li id="w-barta">
+      <div class="when"><strong>BARTA</strong>Oct 2024 to now</div>
+      <div>
+        <h3>Undergraduate AI Researcher <span class="now-tag">Current</span></h3>
+        <ul><li>Research on NLP, LLMs and generative AI, including human-like temporal reasoning in LLMs with Visualization-of-Thought prompting.</li></ul>
+      </div>
+    </li>
+  </ol>
+  <details class="earlier">
+    <summary>Earlier roles, 2023 to 2024</summary>
+    <ol class="timeline">
+      <li><div class="when" style="--dot:var(--sun)"><strong>Markopolo.ai</strong>Nov 2023 to Dec 2024</div><div><h3>Data Science Intern</h3><ul><li>Data scraping, annotation and brand analysis with Python, NLP and LLMs for leading Bangladeshi brands.</li></ul></div></li>
+      <li><div class="when" style="--dot:var(--sky)"><strong>Fellowship.ai</strong>Apr 2024 to Jun 2024</div><div><h3>Data Science &amp; ML Fellow</h3><ul><li>Built a multi-agent real estate search app with CrewAI, Gemini Pro and LangChain, mentored by Launchpad.ai.</li></ul></div></li>
+      <li><div class="when" style="--dot:var(--coral)"><strong>Through Ltd.</strong>Mar 2023 to Dec 2023</div><div><h3>IT Project Manager, then Full-Stack Intern</h3><ul><li>Ideation and design for a one-stop educational management system and client websites.</li></ul></div></li>
+    </ol>
+  </details>
+ </div>
+</section>
+
+<section class="block alt" id="systems">
+ <div class="wrap">
+  <div class="block-head">
+    <h2>Systems</h2>
+    <p>Each one is drawn as its agent graph, because the architecture is the interesting part.</p>
+  </div>
+  <div class="legend" aria-label="Graph legend">
+    <span class="t-in"><i></i>Input</span><span class="t-step"><i></i>Processing step</span><span class="t-rt"><i></i>Router</span><span class="t-sp"><i></i>Specialist agents</span><span class="t-out"><i></i>Output</span>
+  </div>
+  <div class="systems">
+    <article class="sys wide" id="p-mergerdesk">
+      <div><h3>MergerDesk</h3><div class="tools">LangGraph, Groq, Pydantic, SQLite, Streamlit</div></div>
+      <div>
+        <p>An M&amp;A due diligence platform. A document checker screens the data room, then seven specialist reasoning agents analyse it in parallel. Designed to pull from existing virtual data rooms and leave staffing decisions with the deal lead.</p>
+        <div class="graph" aria-label="Data room, document checker, specialty router, seven specialist agents, memo synthesis">
+          <span class="n t-in">Data room</span><span class="e"></span><span class="n t-step">Document checker</span><span class="e"></span><span class="n t-rt">Specialty router</span><span class="e"></span><span class="n t-sp">IP, litigation, tax, compliance, contracts, case law, multi-jurisdiction</span><span class="e"></span><span class="n t-out">Diligence memo</span>
+        </div>
+      </div>
+    </article>
+    <article class="sys" id="p-jurisdicta">
+      <h3>Jurisdicta</h3><div class="tools">Formerly NyayBondhu. RAG, OCR, document generation</div>
+      <p>A legal intelligence platform for lawyers and law firms in Bangladesh: a RAG legal assistant, document analysis and drafting, with case management around them. Placed 2nd at VisionX 2025.</p>
+      <div class="graph" aria-label="Lawyer request, intent router, legal Q&A or analysis or drafting, citation check, response">
+        <span class="n t-in">Lawyer’s request</span><span class="e"></span><span class="n t-rt">Intent router</span><span class="e"></span><span class="n t-sp">Q&amp;A, analysis, drafting</span><span class="e"></span><span class="n t-step">Citation check</span><span class="e"></span><span class="n t-out">Response</span>
+      </div>
+    </article>
+    <article class="sys" id="p-framework">
+      <h3>AI Agent System Design Framework</h3><div class="tools">Published book, open source on GitHub</div>
+      <p>A 92-question production-readiness checklist for agentic systems, built on a strict line between architecture (what the system is) and orchestration (how it runs). Used to teach students to design agent systems from scratch.</p>
+      <div class="graph" aria-label="Problem framing, architecture, orchestration, evaluation, production">
+        <span class="n t-in">Problem framing</span><span class="e"></span><span class="n t-step">Architecture</span><span class="e"></span><span class="n t-rt">Orchestration</span><span class="e"></span><span class="n t-sp">Evaluation</span><span class="e"></span><span class="n t-out">Production</span>
+      </div>
+    </article>
+    <article class="sys" id="p-triage">
+      <h3>Support Ticket Triage</h3><div class="tools">LangGraph, Groq, Pydantic, SQLite</div>
+      <p>Domain-agnostic triage evaluated on real and synthetic tickets, shipped with architecture docs, a case study, an evaluation summary and a public demo.</p>
+      <div class="graph" aria-label="Ticket, classifier, priority, routing, draft reply, eval harness">
+        <span class="n t-in">Ticket</span><span class="e"></span><span class="n t-step">Classifier</span><span class="e"></span><span class="n t-step">Priority</span><span class="e"></span><span class="n t-rt">Routing</span><span class="e"></span><span class="n t-out">Draft reply</span>
+      </div>
+    </article>
+    <article class="sys" id="p-react">
+      <h3>Persona-based ReAct research agent</h3><div class="tools">LangGraph, Groq</div>
+      <p>A persona-conditioned ReAct agent, evaluated and hardened against real API failure modes: broken tool calls, rate limits and models deprecated mid-run.</p>
+      <div class="graph" aria-label="Persona, reason, act, observe, retry and fallback, answer">
+        <span class="n t-in">Persona</span><span class="e"></span><span class="n t-rt">Reason</span><span class="e"></span><span class="n t-sp">Act and observe</span><span class="e"></span><span class="n t-step">Retry, fallback</span><span class="e"></span><span class="n t-out">Answer</span>
+      </div>
+    </article>
+    <article class="sys wide" id="p-media">
+      <div><h3>Media Intelligence Agent</h3><div class="tools">LangGraph, Groq, BeautifulSoup</div></div>
+      <div>
+        <p>Aggregates breaking news from several sources, cross-verifies claims and pulls out what a journalist can act on, faster than a single-prompt LLM workflow.</p>
+        <div class="graph" aria-label="Sources, aggregator, cross-verifier, analyst, brief">
+          <span class="n t-in">News sources</span><span class="e"></span><span class="n t-step">Aggregator</span><span class="e"></span><span class="n t-rt">Cross-verifier</span><span class="e"></span><span class="n t-sp">Analyst agents</span><span class="e"></span><span class="n t-out">Journalist brief</span>
+        </div>
+      </div>
+    </article>
+  </div>
+  <p class="minor">Also built: a RAG career path recommender (Gemini Pro, Playwright), a multi-agent real estate matcher with CLIP image search, a software engineer agent and a data science pipeline agent (CrewAI), and classic ML models for credit, housing, crop and medical prediction.</p>
+ </div>
+</section>
+
+<section class="block" id="research">
+ <div class="wrap">
+  <div class="block-head">
+    <h2>Research</h2>
+    <p>I study where agent systems quietly go wrong: when retrieval returns information that is relevant but not admissible, and when capable agents collaborate badly.</p>
+  </div>
+  <div class="papers">
+    <article class="paper lead" id="r-validity">
+      <div>
+        <h3>AdmitBench: relevant isn’t always admissible</h3>
+        <p class="meta">Independent research, ongoing</p>
+        <p>Retrieval systems treat relevance as permission to answer. But a passage can match a query and still be inadmissible: superseded, not yet in effect, or true for a different moment than the one asked about. AdmitBench is a statement-level benchmark for whether retrieved information is admissible for a given query, paired with an admissibility-constrained retrieval framework that reduces supersession, anticipation and recency-bias errors.</p>
+        <p>The agent at the top of this page runs a small version of that check. Turn it off to see the failure.</p>
+      </div>
+      <div class="validity-viz" aria-label="Three relevant facts about her employer; only one is admissible for a question about today">
+        <div class="vrow"><span>AskTuring.ai</span><div class="vbar"><i class="stale" style="left:0;width:52%"></i></div></div>
+        <div class="vrow"><span>Optimizely</span><div class="vbar"><i class="stale" style="left:56%;width:9%"></i></div></div>
+        <div class="vrow"><span>CaseMax Plus</span><div class="vbar"><i style="left:65%;width:35%"></i></div></div>
+        <div class="vnow"><span style="left:calc(100% - 46px)">today</span></div>
+        <div class="vkey"><span style="--k:#3DDCA8">admissible today</span><span style="--k:#FF7A93">relevant, not admissible</span></div>
+      </div>
+    </article>
+    <article class="paper" id="r-collab">
+      <h3>AgentCollabBench: Diagnosing When Good Agents Make Bad Collaborators</h3>
+      <p class="meta">Co-author, arXiv:2605.08647, May 2026</p>
+      <p>A benchmark for the failures that show up only when strong individual agents have to work together.</p>
+      <a class="go" href="https://arxiv.org/abs/2605.08647" target="_blank" rel="noopener">Read on arXiv</a>
+    </article>
+    <article class="paper" id="r-other">
+      <h3>Temporal reasoning and road safety</h3>
+      <p class="meta">BARTA, and IIT Dhaka University with BUET</p>
+      <p>Human-like temporal reasoning in LLMs using Visualization-of-Thought prompting. As co-author on the iRAP project, predicted road safety levels with ML and analysed crash factors in Bangladesh.</p>
+    </article>
+  </div>
+ </div>
+</section>
+
+<section class="block alt" id="recognition">
+ <div class="wrap">
+  <div class="two">
+    <div>
+      <div class="block-head" style="grid-template-columns:1fr;margin-bottom:22px"><h2>Recognition</h2></div>
+      <div class="award" id="a-visionx"><h3>1st runner-up, VisionX 2025</h3><p>Second place nationally in an AI innovation competition with NyayBondhu, a multi-agent legal intelligence system.</p></div>
+      <div class="award" id="a-entrepret"><h3>Semifinalist, Entrepret 3.0</h3><p>National entrepreneurship competition, with NyayBondhu as an AI legal assistant for more accessible legal work.</p></div>
+      <div class="award" id="education"><h3>BSc in Education, University of Dhaka</h3><p>Institute of Education and Research, 2022 to 2025. Studying how people learn shapes how I design systems for experts.</p></div>
+    </div>
+    <div class="skills" id="skills" style="--accent:var(--violet);--accent-soft:var(--violet-soft)">
+      <div class="block-head" style="grid-template-columns:1fr;margin-bottom:0"><h2>Toolkit</h2></div>
+      <dl>
+        <dt>Practice</dt><dd class="t-rt"><span>Multi-agent systems</span><span>AI solution architecture</span><span>RAG pipeline design</span><span>Evaluation</span><span>Product analysis</span></dd>
+        <dt>Frameworks</dt><dd class="t-sp"><span>LangGraph</span><span>LangChain</span><span>CrewAI</span><span>Groq API</span><span>Pydantic</span><span>PyTorch</span><span>scikit-learn</span><span>spaCy</span><span>NLTK</span><span>Pandas</span><span>NumPy</span><span>Playwright</span><span>BeautifulSoup</span></dd>
+        <dt>Languages</dt><dd class="t-in"><span>Python</span><span>SQL</span><span>C</span><span>HTML</span><span>CSS</span></dd>
+        <dt>Tools</dt><dd class="t-step"><span>Landing.ai</span><span>Salesforce</span><span>Whimsical</span><span>SQLite</span><span>GitHub</span><span>Claude</span><span>Cursor</span><span>VS Code</span></dd>
+      </dl>
+    </div>
+  </div>
+ </div>
+</section>
+
+<div class="contact-band">
+ <div class="wrap">
+  <section class="contact" id="contact">
+    <h2>Have a process that should run itself?</h2>
+    <p>I’m happy to talk about agent architecture, legal-tech automation, evaluation, or a role on your team.</p>
+    <div class="links">
+      <a class="btn primary" href="mailto:kainatraisa@gmail.com">Email me</a>
+      <a class="btn" href="https://www.linkedin.com/in/kainat-raisa/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn" href="https://github.com/Kainat-raisa21" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </section>
+  <footer>
+    <span>© <span id="yr"></span> Kainat Raisa Hossain</span>
+    <span>Built as a static page. The agent above runs entirely in your browser, no API calls.</span>
+  </footer>
+ </div>
+</div>
+
+<script>
+(function(){
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+/* ---------- Knowledge base: every fact has a source section and a validity window ---------- */
+const KB = [
+  {id:'casemax', intent:'role', src:'#w-casemax', from:'2026-05', to:null, k:'work job company employer role current now',
+   t:'Kainat is an AI Product Engineer at CaseMax Plus, designing agentic systems that automate legal workflows in the U.S. mortgage industry.'},
+  {id:'casemax-llc', intent:'role', src:'#w-casemax', from:'2026-05', to:null, k:'casemax llc company joint partner formed',
+   t:'CaseMax Plus is an LLC formed by CaseMax and a new partner company.'},
+  {id:'casemax-2', intent:'role', src:'#w-casemax', from:'2026-05', to:null, k:'agent document verification evaluation pipeline legal',
+   t:'At CaseMax Plus she architected a document verification agent and is building the evaluation system for a document review pipeline.'},
+  {id:'barta', intent:'role', src:'#w-barta', from:'2024-10', to:null, k:'research researcher role',
+   t:'She is also an undergraduate AI researcher at BARTA, working on temporal reasoning in LLMs.'},
+  {id:'optimizely', intent:'role', src:'#w-optimizely', from:'2026-03', to:'2026-05', k:'work job company employer role salesforce sales',
+   t:'Kainat works at Optimizely as a Sales Operations Junior Analyst, prototyping AI agents on Salesforce.'},
+  {id:'askturing', intent:'role', src:'#w-askturing', from:'2025-03', to:'2026-02', k:'work works job company employer role current now rag',
+   t:'Kainat works at AskTuring.ai as a Junior Product Analyst, leading the architecture of RAG pipelines.'},
+  {id:'askturing-2', intent:'role', src:'#w-askturing', from:'2025-03', to:'2026-02', k:'rag text-to-sql hybrid title review multi-agent',
+   t:'At AskTuring.ai she led a Text-to-SQL RAG app, a hybrid structured and unstructured RAG pipeline, and a multi-agent title review system.'},
+  {id:'askturing-intern', intent:'role', src:'#w-askturing', from:'2024-12', to:'2025-02', k:'intern internship agent',
+   t:'She started at AskTuring.ai as an AI Agent Researcher Intern.'},
+  {id:'markopolo', intent:'role', src:'#work', from:'2023-11', to:'2024-12', k:'intern internship data science brands',
+   t:'She was a Data Science Intern at Markopolo.ai, doing scraping, annotation and brand analysis with NLP and LLMs.'},
+  {id:'fellowship', intent:'role', src:'#work', from:'2024-04', to:'2024-06', k:'fellow fellowship crewai real estate',
+   t:'As a Fellowship.ai fellow she built a multi-agent real estate search app with CrewAI.'},
+  {id:'through', intent:'role', src:'#work', from:'2023-03', to:'2023-12', k:'project manager full-stack developer websites',
+   t:'At Through Ltd. she was a full-stack intern and later a project-based IT project manager.'},
+
+  {id:'mergerdesk', intent:'project', src:'#p-mergerdesk', k:'mergerdesk merger m&a due diligence legal agents langgraph',
+   t:'MergerDesk is her M&A due diligence platform: a document checker plus seven specialist agents (IP, litigation, tax, compliance, contracts, case law, multi-jurisdiction) built with LangGraph, Groq, Pydantic and SQLite.'},
+  {id:'mergerdesk-2', intent:'project', src:'#p-mergerdesk', k:'mergerdesk data room vdr memo design',
+   t:'MergerDesk is designed to pull documents from existing virtual data rooms and re-synthesize the diligence memo as new documents arrive.'},
+  {id:'jurisdicta', intent:'project', src:'#p-jurisdicta', k:'jurisdicta nyaybondhu legal bangladesh lawyers startup rag drafting',
+   t:'Jurisdicta (formerly NyayBondhu) is the legal intelligence platform she is building for lawyers in Bangladesh, with a RAG legal assistant, document analysis and document drafting.'},
+  {id:'framework', intent:'project', src:'#p-framework', k:'framework checklist book design production readiness architecture orchestration teach',
+   t:'Her AI Agent System Design Framework is a 92-question production-readiness checklist built on a strict distinction between architecture and orchestration, published as a PDF book and open-sourced on GitHub.'},
+  {id:'triage', intent:'project', src:'#p-triage', k:'support ticket triage langgraph evaluation demo',
+   t:'Her Support Ticket Triage system is domain-agnostic, evaluated on real and synthetic data, and ships with full documentation and a public demo.'},
+  {id:'react', intent:'project', src:'#p-react', k:'react research agent persona groq rate limit',
+   t:'She built a persona-based ReAct research agent hardened against tool-call failures, rate limits and deprecated models.'},
+  {id:'media', intent:'project', src:'#p-media', k:'media news journalist intelligence verification',
+   t:'Her Media Intelligence Agent aggregates and cross-verifies breaking news so journalists get actionable insight faster.'},
+  {id:'otherproj', intent:'project', src:'#systems', k:'career recommender real estate software engineer data science crewai clip',
+   t:'Other builds include a RAG career path recommender, a CLIP-powered real estate matcher, a software engineer agent and a data science pipeline agent.'},
+
+  {id:'collab', intent:'research', src:'#r-collab', k:'paper published publication arxiv agentcollabbench benchmark multi-agent collaboration coauthor',
+   t:'She co-authored "AgentCollabBench: Diagnosing When Good Agents Make Bad Collaborators" (arXiv:2605.08647, May 2026).'},
+  {id:'admitbench', intent:'research', src:'#r-validity', k:'research admitbench admissible admissibility temporal validity rag retrieval benchmark time',
+   t:'She is developing AdmitBench, a benchmark for whether retrieved information is admissible to answer a query, plus an admissibility-constrained retrieval framework, because relevant information is not always admissible.'},
+  {id:'vot', intent:'research', src:'#r-other', k:'research temporal reasoning visualization of thought llm',
+   t:'At BARTA she researches human-like temporal reasoning in LLMs with Visualization-of-Thought prompting.'},
+  {id:'irap', intent:'research', src:'#r-other', k:'research road safety irap machine learning paper coauthor',
+   t:'She co-authored the iRAP project at IIT Dhaka University and BUET, predicting road safety levels with ML.'},
+
+  {id:'visionx', intent:'award', src:'#a-visionx', k:'award won win prize competition visionx runner up',
+   t:'She won 1st runner-up at VisionX 2025, a national AI innovation competition, with NyayBondhu.'},
+  {id:'entrepret', intent:'award', src:'#a-entrepret', k:'award competition entrepret semifinal entrepreneurship',
+   t:'She was a semifinalist at Entrepret 3.0, a national entrepreneurship competition.'},
+  {id:'edu', intent:'education', src:'#education', k:'education degree university dhaka study studied bsc graduate',
+   t:'She holds a BSc in Education from the Institute of Education and Research, University of Dhaka (2022 to 2025).'},
+
+  {id:'skills-fw', intent:'skills', src:'#skills', k:'stack tech tools frameworks libraries skills langgraph langchain crewai',
+   t:'Her core frameworks are LangGraph, LangChain, CrewAI, the Groq API and Pydantic, plus PyTorch, scikit-learn and spaCy.'},
+  {id:'skills-core', intent:'skills', src:'#skills', k:'skills stack expertise practice multi-agent architecture rag evaluation',
+   t:'Her practice covers multi-agent systems, AI solution architecture, RAG pipeline design and evaluation.'},
+  {id:'skills-lang', intent:'skills', src:'#skills', k:'stack languages programming python sql tools landing.ai salesforce',
+   t:'She writes Python and SQL, and works with Landing.ai, Salesforce, Whimsical, Claude and Cursor.'},
+
+  {id:'contact', intent:'contact', src:'#contact', k:'contact email hire reach linkedin github message',
+   t:'You can reach her at kainatraisa@gmail.com, on LinkedIn at linkedin.com/in/kainat-raisa, or on GitHub as Kainat-raisa21.'}
+];
+
+/* ---------- Text utils ---------- */
+const STOP = new Set('a an the is are was were be been do does did of to in on at for with and or her she kainat kainat\'s what whats where which who how has have had about tell me any can you this that it its i s'.split(' '));
+const SYN = {job:'work',jobs:'work',employer:'work',company:'work',working:'work',works:'work',employed:'work',
+  built:'project',build:'project',projects:'project',made:'project',portfolio:'project',
+  paper:'research',papers:'research',publish:'published',publications:'publication',
+  stack:'stack',tech:'stack',toolkit:'tools',skill:'skills',
+  email:'contact',hire:'contact',reach:'contact',
+  degree:'education',university:'education',college:'education',
+  awards:'award',prize:'award',won:'award',win:'award',
+  'm&a':'mergerdesk',merger:'mergerdesk',mergers:'mergerdesk',nyaybondhu:'jurisdicta',agents:'agent'};
+function tok(s){
+  return s.toLowerCase().replace(/[^a-z0-9&.\-\s]/g,' ').split(/\s+/)
+    .map(w=>w.replace(/^[.\-]+|[.\-]+$/g,''))
+    .filter(w=>w && !STOP.has(w))
+    .map(w=>SYN[w]||w);
+}
+
+/* ---------- BM25 index ---------- */
+const docs = KB.map(f=>{ const toks = tok(f.t+' '+f.k); const tf={}; toks.forEach(w=>tf[w]=(tf[w]||0)+1); return {f,tf,len:toks.length}; });
+const N = docs.length, avgdl = docs.reduce((a,d)=>a+d.len,0)/N;
+const df = {}; docs.forEach(d=>Object.keys(d.tf).forEach(w=>df[w]=(df[w]||0)+1));
+function bm25(qt, d){ const k1=1.4,b=.75; let s=0;
+  qt.forEach(w=>{ const f=d.tf[w]; if(!f) return; const idf=Math.log(1+(N-df[w]+.5)/(df[w]+.5)); s+=idf*(f*(k1+1))/(f+k1*(1-b+b*d.len/avgdl)); });
+  return s; }
+
+/* ---------- Router ---------- */
+const INTENTS = {
+  role:['work','role','position','current','now','currently','title','intern'],
+  project:['project','mergerdesk','jurisdicta','framework','triage','system','agent','checklist','react','media'],
+  research:['research','published','publication','arxiv','benchmark','admitbench','admissible','admissibility','agentcollabbench'],
+  skills:['skills','stack','tools','frameworks','languages','python','langgraph','expertise'],
+  contact:['contact','linkedin','github'],
+  education:['education','study','studied','bsc'],
+  award:['award','competition','visionx','entrepret']
+};
+function route(q){
+  const qt = tok(q); const scores={};
+  Object.entries(INTENTS).forEach(([k,ws])=>scores[k]=qt.filter(w=>ws.includes(w)).length);
+  let best='general', bs=0; Object.entries(scores).forEach(([k,v])=>{ if(v>bs){bs=v;best=k;} });
+  const lq = q.toLowerCase();
+  const past = /\b(was|were|did|before|previous|previously|past|history|used to|earlier|former)\b/.test(lq);
+  const present = !past && (/\b(now|current|currently|today|these days|present)\b/.test(lq) || (best==='role' && /\b(is|does|works?)\b/.test(lq)));
+  return {intent:best, time: past?'past':present?'present':'any', qt};
+}
+
+/* ---------- Pipeline ---------- */
+const nowKey = (()=>{ const d=new Date(); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0'); })();
+function isValid(f){ return !f.to || f.to >= nowKey; }
+
+function run(q, validityOn){
+  const t0 = performance.now(); const trace = {};
+  const r = route(q); trace.route = r;
+
+  let scored = docs.map(d=>({f:d.f, s:bm25(r.qt,d) + (d.f.intent===r.intent && r.intent!=='general' ? 1.2 : 0)}))
+                   .filter(x=>x.s>0).sort((a,b)=>b.s-a.s);
+  trace.retrieve = {count:N, top:scored.slice(0,5)};
+
+  let removed = [];
+  if(validityOn && r.time==='present'){ removed = scored.filter(x=>!isValid(x.f)); scored = scored.filter(x=>isValid(x.f)); }
+  trace.validity = {on:validityOn, applied: validityOn && r.time==='present', removed};
+
+  const lexical = r.qt.length ? Math.max(0,...scored.map(x=>bm25(r.qt, docs.find(d=>d.f===x.f)))) : 0;
+  const threshold = 1.6;
+  const grounded = lexical >= threshold;
+  trace.ground = {lexical, threshold, grounded};
+
+  // Composer: keep only facts that match the routed intent, so a stray keyword
+  // overlap (e.g. "stack" in "full-stack") can't pull an off-topic fact into the answer.
+  let picked = [], offIntent = [];
+  if(grounded){
+    let pool = scored;
+    if(r.intent!=='general'){
+      const onIntent = scored.filter(x=>x.f.intent===r.intent);
+      if(onIntent.length){
+        offIntent = scored.filter(x=>x.f.intent!==r.intent && x.s >= onIntent[0].s*0.55);
+        pool = onIntent;
+      }
+    }
+    picked = pool.filter(x=>x.s >= pool[0].s*0.55).slice(0,3);
+    if(r.intent==='role' && r.time==='present' && !validityOn) picked = pool.slice(0,2);
+  }
+  trace.compose = {picked, offIntent};
+  trace.ms = (performance.now()-t0);
+  return trace;
+}
+
+/* ---------- Rendering ---------- */
+const $ = s=>document.querySelector(s);
+const esc = s=>s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const fmtWin = f => f.from ? (f.from+' to '+(f.to||'now')) : 'undated';
+
+function renderAnswer(q, tr, validityOn){
+  const el = $('#answer');
+  let html = '<p class="q">You asked: '+esc(q)+'</p>';
+  if(!tr.ground.grounded){
+    html += '<p class="a">That isn’t in my knowledge base, so I won’t guess. I only answer from what’s on this page. Try asking about her work, systems, research or stack.</p>';
+  } else {
+    const parts = tr.compose.picked.map((x,i)=>esc(x.f.t)+'<sup><a href="'+x.f.src+'" data-cite aria-label="Source '+(i+1)+'">'+(i+1)+'</a></sup>');
+    html += '<p class="a">'+parts.join(' ')+'</p>';
+    const stale = tr.compose.picked.filter(x=>!isValid(x.f));
+    if(stale.length && tr.route.time==='present'){
+      html += '<div class="warn">This answer includes a superseded fact ('+stale.map(x=>esc(x.f.id)).join(', ')+', valid until '+esc(stale[0].f.to)+'). It was relevant, but not admissible for a question about now. That’s the failure AdmitBench measures. Switch the admissibility check back on and ask again.</div>';
+    }
+  }
+  el.innerHTML = html;
+  el.querySelectorAll('[data-cite]').forEach(a=>a.addEventListener('click',()=>{
+    const t = document.querySelector(a.getAttribute('href')); if(!t) return;
+    t.classList.remove('flash'); void t.offsetWidth; t.classList.add('flash');
+  }));
+}
+
+function renderTrace(tr){
+  const r = tr.route, steps = {};
+  steps.route = 'intent: <b>'+r.intent+'</b>, time scope: <b>'+r.time+'</b><span class="fact">tokens: '+esc(r.qt.join(' ')||'(none)')+'</span>';
+  steps.retrieve = 'scored '+tr.retrieve.count+' facts'+ (tr.retrieve.top.length? '' : ', no matches') +
+    tr.retrieve.top.map(x=>'<span class="fact'+(!isValid(x.f)&&r.time==='present'?' fail':'')+'">'+x.s.toFixed(2)+'  '+esc(x.f.id)+'  ['+fmtWin(x.f)+']</span>').join('');
+  const v = tr.validity;
+  steps.validity = !v.on ? '<span class="fail">disabled by user, relevant facts pass through unchecked</span>'
+    : !v.applied ? 'query is not about the present, nothing to filter'
+    : v.removed.length ? 'removed '+v.removed.length+' relevant but inadmissible fact'+(v.removed.length>1?'s':'')+v.removed.slice(0,4).map(x=>'<span class="fact gone">'+esc(x.f.id)+' ended '+esc(x.f.to)+'</span>').join('')
+    : 'all candidates admissible as of '+nowKey;
+  const g = tr.ground;
+  steps.ground = g.grounded ? '<span class="pass">pass</span>, lexical evidence '+g.lexical.toFixed(2)+' ≥ '+g.threshold
+                            : '<span class="fail">abstain</span>, lexical evidence '+g.lexical.toFixed(2)+' &lt; '+g.threshold;
+  steps.compose = g.grounded ? tr.compose.picked.length+' cited fact'+(tr.compose.picked.length>1?'s':'')+': '+tr.compose.picked.map(x=>esc(x.f.id)).join(', ')
+      + tr.compose.offIntent.map(x=>'<span class="fact gone">'+esc(x.f.id)+' dropped, intent is '+esc(x.f.intent)+' not '+esc(r.intent)+'</span>').join('')
+    : 'no answer composed, returned abstention';
+
+  const lis = [...document.querySelectorAll('#trace li')];
+  lis.forEach(li=>li.classList.remove('on'));
+  lis.forEach((li,i)=>{
+    const show = ()=>{ li.querySelector('.det').innerHTML = steps[li.dataset.step]; li.classList.add('on'); };
+    reduce ? show() : setTimeout(show, i*170);
+  });
+  const nc = g.grounded?tr.compose.picked.length:0; $('#tstats').textContent = tr.ms.toFixed(1)+' ms, '+nc+(nc===1?' citation':' citations');
+}
+
+function ask(q){
+  q = (q||'').trim(); if(!q) return;
+  const on = $('#validity').checked;
+  const tr = run(q, on);
+  renderTrace(tr);
+  setTimeout(()=>renderAnswer(q, tr, on), reduce?0:5*170);
+}
+
+$('#askForm').addEventListener('submit', e=>{ e.preventDefault(); ask($('#q').value); });
+document.querySelectorAll('#chips .chip').forEach(c=>c.addEventListener('click',()=>{ $('#q').value=c.textContent; ask(c.textContent); }));
+$('#validity').addEventListener('change', ()=>{ if($('#q').value.trim()) ask($('#q').value); });
+})();
+</script>
+</body>
+</html>
